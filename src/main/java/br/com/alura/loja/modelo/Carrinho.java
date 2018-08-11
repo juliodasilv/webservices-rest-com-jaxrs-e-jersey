@@ -11,6 +11,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 import com.google.gson.Gson;
 import com.thoughtworks.xstream.XStream;
 
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Carrinho {
 
 	private List<Produto> produtos = new ArrayList<Produto>();
@@ -75,6 +77,22 @@ public class Carrinho {
 	
 	public List<Produto> getProdutos() {
 		return produtos;
+	}
+
+	public String toXML() {
+		return new XStream().toXML(this);
+	}
+
+	public String toJson() {
+		return new Gson().toJson(this);
+	}
+
+	public String getCidade() {
+		return cidade;
+	}
+
+	public void setProdutos(List<Produto> produtos) {
+		this.produtos = produtos;
 	}
 
 }
